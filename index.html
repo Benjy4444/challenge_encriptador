@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Encriptador</title>
+</head>
+
+
+
+<body>
+
+    <header>
+
+        
+    
+    </header>
+
+    <main>
+
+        <section class="container__ingreso">
+                                
+                    <div>
+                        <h1>Mensaje:</h1>
+                        <!-- <p>Ingresar solo texto por favor.</p> -->
+                        <input type="text" id="mensajeEncriptarDesencriptar" min="1" max="100" class="container__input">
+                    </div>
+                    
+                    <div>
+                        <h1>Clave:</h1>
+                        <!-- <p>Clave que se debe proporcionar al receptor del mensaje para desencriptar el mismo.</p> -->
+                        <input type="text" id="palabraClave" min="1" max="20" class="container__input">
+                    </div>
+                    
+        </section>
+
+        <Section class="container__botones">
+
+                    <div>
+                        <button onclick="encriptar();" class="" id="botonEncriptar">Encriptar</button>
+                        <button onclick="desencriptar();" class="" id="botonDesencriptar">Desencriptar</button>
+                        <button onclick="copiar();" class="" id="botonCopiar">Copiar</button>                   
+                        <button onclick="reiniciar();" class="" id="botonBorrar">Borrar</button>
+                        
+                    </div>
+        </Section>
+
+        <section>
+
+                    <div>
+                        <h1>Mensaje encriptado:</h1>
+                        <p id="textoEncriptado"></p>
+                    </div>
+                
+                <!-- 
+                <img src="./img/codigos-secretos-en-la-antiguedad_edfe9e1b_1200x630.jpg" alt="Tabla de códigos" class="container__imagen-persona" />
+                -->
+        </section>
+
+    </main>
+  
+    <footer>
+        
+        
+
+    </footer>
+
+    <script src="app.js" defer></script>
+</body>
+
+</html>
