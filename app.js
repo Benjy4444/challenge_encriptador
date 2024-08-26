@@ -14,11 +14,22 @@ let listaValoresCaracteresClave = [];
 let listaValoresCaracteresProcesados = [];
 let mensajeProcesado = "";
 
-function asignarTextoElemento(elemento, texto) {
+/* function asignarTextoElemento(elemento, texto) {
     let elementoHTML = document.querySelector(elemento);
     elementoHTML.innerHTML = texto;    
-}
+} */
 
+function asignarTextoElementoPorId(idElemento, nuevoTexto) {
+    // Obtener el elemento por su ID
+    let elemento = document.getElementById(idElemento);
+    // Verificar si el elemento existe
+    if (elemento) {
+        // Reemplazar el contenido del elemento con el nuevo texto
+        elemento.textContent = nuevoTexto;
+    } else {
+        console.error("No se encontró el elemento con ID:", idElemento);
+    }
+}
 function limpiarCajaMensaje() {
     let valorCajaMensaje = document.querySelector('#mensajeEncriptarDesencriptar');
     //console.log(valorCajaMensaje);
@@ -48,9 +59,10 @@ function reiniciar(){
     let listaValoresCaracteresClave = [];
     let listaValoresCaracteresProcesados = [];
     let mensajeProcesado = "";
-    asignarTextoElemento('p', '')
+    asignarTextoElementoPorId('textoProcesado', '')
     limpiarCajaMensaje();
     limpiarCajaClave(); 
+    location.reload()
 }
 
 function copiar(){
@@ -113,7 +125,7 @@ function numeroALetra(numero) {
 
 function encriptar() {
     mensajeEncriptar =  document.getElementById('mensajeEncriptarDesencriptar').value;
-    console.log("Mesnsaje = " + mensajeEncriptar);
+    console.log("Mensaje = " + mensajeEncriptar);
 
     palabraClave = document.getElementById('palabraClave').value;
     console.log("Clave = " + palabraClave);
@@ -151,6 +163,9 @@ function encriptar() {
             indiceListaClave=0;
         }
         let valorCaracterProcesado = listaValoresCaracteresMensaje[contador]+listaValoresCaracteresClave[indiceListaClave]; 
+        if (valorCaracterProcesado>27){
+            valorCaracterProcesado=valorCaracterProcesado-27;
+        }
         listaValoresCaracteresProcesados[contador] = numeroALetra(valorCaracterProcesado);
         indiceListaClave++;
         console.log(listaValoresCaracteresProcesados);
@@ -159,7 +174,7 @@ function encriptar() {
     mensajeProcesado = listaValoresCaracteresProcesados.join('');
     console.log(mensajeProcesado);
 
-    asignarTextoElemento('p', mensajeProcesado)
+    asignarTextoElementoPorId('textoProcesado', mensajeProcesado)
 
     return mensajeProcesado;
 
@@ -199,7 +214,9 @@ function desencriptar (){
                 indiceListaClave = 0;
             }
             let valorCaracterProcesado = listaValoresCaracteresMensaje[contador] - listaValoresCaracteresClave[indiceListaClave];
-            
+            if (valorCaracterProcesado<=0){
+                valorCaracterProcesado=valorCaracterProcesado+27;
+            }            
             listaValoresCaracteresProcesados[contador] = numeroALetra(valorCaracterProcesado);
             indiceListaClave++;
         }
@@ -207,7 +224,7 @@ function desencriptar (){
         mensajeProcesado = listaValoresCaracteresProcesados.join('');
         console.log(mensajeProcesado);
     
-        asignarTextoElemento('p', mensajeProcesado);
+        asignarTextoElementoPorId('textoProcesado', mensajeProcesado);
     
         return mensajeProcesado;
     }
