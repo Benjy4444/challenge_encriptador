@@ -1,9 +1,7 @@
 let mensajeEncriptar = "";
 let mensajeDesencriptar = "";
 let palabraClave = '';
-/* let letraMensaje = ''; */
 let letraClave = '';
-/* let valorCaracterMensaje = 0; */
 let valorCaracterClave = 0;
 let longitudMensaje = 0;
 let longitudClave = 0;
@@ -13,11 +11,6 @@ let listaValoresCaracteresMensaje = [];
 let listaValoresCaracteresClave = [];
 let listaValoresCaracteresProcesados = [];
 let mensajeProcesado = "";
-
-/* function asignarTextoElemento(elemento, texto) {
-    let elementoHTML = document.querySelector(elemento);
-    elementoHTML.innerHTML = texto;    
-} */
 
 function asignarTextoElementoPorId(idElemento, nuevoTexto) {
     // Obtener el elemento por su ID
@@ -30,12 +23,14 @@ function asignarTextoElementoPorId(idElemento, nuevoTexto) {
         console.error("No se encontró el elemento con ID:", idElemento);
     }
 }
+
+// Ver tema de eliminar capaz función limpiarCajaMensaje... no se usa...
 function limpiarCajaMensaje() {
     let valorCajaMensaje = document.querySelector('#mensajeEncriptarDesencriptar');
-    //console.log(valorCajaMensaje);
     valorCajaMensaje.value = '';
 }
 
+// Ver tema de eliminar capaz función limpiarCajaClave... no se usa...
 function limpiarCajaClave() {
     let valorCajaClave = document.querySelector('#palabraClave');
     //console.log(valorCajaClave);
@@ -43,26 +38,7 @@ function limpiarCajaClave() {
 }
 
 function reiniciar(){
-    //limpiar cajas de mensaje y palabra clave
-    let mensajeEncriptar = "";
-    let mensajeDesencriptar = "";
-    let palabraClave = '';
-    /* let letraMensaje = ''; */
-    let letraClave = '';
-    /* let valorCaracterMensaje = 0; */
-    let valorCaracterClave = 0;
-    let longitudMensaje = 0;
-    let longitudClave = 0;
-    let contadorMensaje = 0;
-    let contadorClave =0;
-    let listaValoresCaracteresMensaje = [];
-    let listaValoresCaracteresClave = [];
-    let listaValoresCaracteresProcesados = [];
-    let mensajeProcesado = "";
-    asignarTextoElementoPorId('textoProcesado', '')
-    limpiarCajaMensaje();
-    limpiarCajaClave(); 
-    location.reload()
+    location.reload() 
 }
 
 function copiar(){
@@ -94,7 +70,7 @@ function extraerLetra(mensaje, posicion) {
     }
 }
 
-function obtenerPosicionAlfabeto(caracter) {
+function letraANumero(caracter) {
     if (caracter === ' ') {
         return 27; // Devuelve un espacio
     }
@@ -125,37 +101,37 @@ function numeroALetra(numero) {
 
 function encriptar() {
     mensajeEncriptar =  document.getElementById('mensajeEncriptarDesencriptar').value;
-    console.log("Mensaje = " + mensajeEncriptar);
+    // console.log("Mensaje = " + mensajeEncriptar);
 
     palabraClave = document.getElementById('palabraClave').value;
-    console.log("Clave = " + palabraClave);
+    // console.log("Clave = " + palabraClave);
  
     longitudMensaje = mensajeEncriptar.length;
-    console.log(longitudMensaje);
+    // console.log(longitudMensaje);
 
     longitudClave = palabraClave.length;
-    console.log(longitudClave);
+    // console.log(longitudClave);
 
     for (contadorMensaje=1; contadorMensaje<=mensajeEncriptar.length; contadorMensaje++) {
         let letraMensaje = extraerLetra(mensajeEncriptar, contadorMensaje-1);
-        console.log(mensajeEncriptar);
-        console.log(contadorMensaje);
-        console.log(letraMensaje);
-        let valorCaracterMensaje = obtenerPosicionAlfabeto(letraMensaje);
-        console.log(valorCaracterMensaje);
+        // console.log(mensajeEncriptar);
+        // console.log(contadorMensaje);
+        // console.log(letraMensaje);
+        let valorCaracterMensaje = letraANumero(letraMensaje);
+        // console.log(valorCaracterMensaje);
         listaValoresCaracteresMensaje.push(valorCaracterMensaje);
-        console.log(listaValoresCaracteresMensaje);
+        // console.log(listaValoresCaracteresMensaje);
     }
     
     for (contadorClave=1; contadorClave<=palabraClave.length; contadorClave++) {
         let letraClave = extraerLetra(palabraClave, contadorClave-1);
-        console.log(palabraClave);
-        console.log(contadorClave);
-        console.log(letraClave);
-        let valorCaracterClave = obtenerPosicionAlfabeto(letraClave);
-        console.log(valorCaracterClave);
+        // console.log(palabraClave);
+        // console.log(contadorClave);
+        // console.log(letraClave);
+        let valorCaracterClave = letraANumero(letraClave);
+        // console.log(valorCaracterClave);
         listaValoresCaracteresClave.push(valorCaracterClave);
-        console.log(listaValoresCaracteresClave);
+        // console.log(listaValoresCaracteresClave);
     } 
 
     for (let contador=0; contador<mensajeEncriptar.length;contador++){
@@ -168,11 +144,11 @@ function encriptar() {
         }
         listaValoresCaracteresProcesados[contador] = numeroALetra(valorCaracterProcesado);
         indiceListaClave++;
-        console.log(listaValoresCaracteresProcesados);
+        // console.log(listaValoresCaracteresProcesados);
     }
 
     mensajeProcesado = listaValoresCaracteresProcesados.join('');
-    console.log(mensajeProcesado);
+    // console.log(mensajeProcesado);
 
     asignarTextoElementoPorId('textoProcesado', mensajeProcesado)
 
@@ -182,29 +158,28 @@ function encriptar() {
 
 function desencriptar (){
         mensajeDesencriptar = document.getElementById('mensajeEncriptarDesencriptar').value;
-        console.log("Mensaje = " + mensajeDesencriptar);
+        // console.log("Mensaje = " + mensajeDesencriptar);
     
         palabraClave = document.getElementById('palabraClave').value;
-        console.log("Clave = " + palabraClave);
+        // console.log("Clave = " + palabraClave);
     
         longitudMensaje = mensajeDesencriptar.length
-        console.log(longitudMensaje);
+        // console.log(longitudMensaje);
     
         longitudClave = palabraClave.length;
-        console.log(longitudClave);
-    
-       
+        // console.log(longitudClave);
+          
         // Obtener valores numéricos del mensaje encriptado
         for (contadorMensaje = 1; contadorMensaje <= mensajeDesencriptar.length; contadorMensaje++) {
             let letraMensaje = extraerLetra(mensajeDesencriptar, contadorMensaje - 1);
-            let valorCaracterMensaje = obtenerPosicionAlfabeto(letraMensaje);
+            let valorCaracterMensaje = letraANumero(letraMensaje);
             listaValoresCaracteresMensaje.push(valorCaracterMensaje);
         }
     
         // Obtener valores numéricos de la clave
         for (contadorClave = 1; contadorClave <= palabraClave.length; contadorClave++) {
             let letraClave = extraerLetra(palabraClave, contadorClave - 1);
-            let valorCaracterClave = obtenerPosicionAlfabeto(letraClave);
+            let valorCaracterClave = letraANumero(letraClave);
             listaValoresCaracteresClave.push(valorCaracterClave);
         }
     
@@ -222,7 +197,7 @@ function desencriptar (){
         }
     
         mensajeProcesado = listaValoresCaracteresProcesados.join('');
-        console.log(mensajeProcesado);
+        // console.log(mensajeProcesado);
     
         asignarTextoElementoPorId('textoProcesado', mensajeProcesado);
     
